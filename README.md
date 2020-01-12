@@ -146,10 +146,23 @@ gradle test
 
 <p align="justify">Il suffit d'éxecuter la class de test sous IntelliJ IDEA, et sous Eclipse click droit sur la classe de test, puis **RUN AS**, et enfin **JUnit Test**.
 
+#### 6. Générer un rapport HTML
+
+<p align="justify">Nous pouvons utiliser le plugin maven-surefire-report-plugin pour générer des rapports HTML pour nos tests unitaires. Ce rapport peut être exporté et partagé avec l'équipe. Il de comprendre le déroulement des tests, et il est utile en cas d'utilisation d'un outil d'intégration continue (CI).
+    
+Pour ce faire, il suffit de tapper la commande: 
+> mvn surefire-report:report
+
+Un rapport HTML doit être généré dans ${basedir}/target/site/surefire-report.html.
+
+![Test report](https://github.com/AbdoBoum/introduction-to-JUnit/blob/master/tests-report.png)
+
+
+
 #### Conclusion
 <p align="justify">Les tests unitaires sont une facette essentielle du développement logiciel, et les tests automatisés sont une partie cruciale des tests. Pour l'écosystéme Java, JUnit est le cadre de référence pour la création de tests unitaires automatisés, en raison de sa simplicité et de sa prise en charge par la plupart des IDE - tels que Eclipse et IDEA - et des systèmes de construction - tels que Maven et Gradle.
 
-#### 6. Annexe
+#### Annexe
 
 1. La class Agent:
 
