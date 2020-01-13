@@ -191,3 +191,9 @@ public class Agent implements {
     }
 
 ```
+
+## Références
+
+1. https://junit.org/junit4/
+1. https://www.javaguides.net/p/junit-4.html
+1. https://dev.to/chrisvasqm/introduction-to-unit-testing-with-java-2544
