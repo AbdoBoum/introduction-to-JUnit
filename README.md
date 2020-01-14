@@ -69,6 +69,7 @@ Si l'assertion est vraie, le test pass, sinon il échoue. Certaines des méthode
 |assertNull(value)	|vérifie que 'value' est null.|
 |assertNotNull(value)	|vérifie que 'value' n'est null.|
 |fail() |échoue un test sans message.|
+|assertThat(object, [Matcher](https://junit.org/junit4/javadoc/latest/org/junit/matchers/JUnitMatchers.html))|vérifie si l'objet correspond à ce que le Matcher exige|
 
 Maintenant nous allons faire une démonstration pour voir l'utilité des méthodes mentionnées ci-dessus.
 
@@ -97,6 +98,10 @@ public class AgentsTest {
     Agent agent = new Agent();
     assertTrue(agent.isFree());
     assertEquals(0, agent.getScore());
+    /* En utilisant un Matcher
+     assertThat(agent.isFree(), equalTo(true));
+     assertThat(agent.getScore(), is(0));
+    */
   }
 }
 ```
