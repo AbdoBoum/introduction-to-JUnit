@@ -98,10 +98,6 @@ public class AgentsTest {
     Agent agent = new Agent();
     assertTrue(agent.isFree());
     assertEquals(0, agent.getScore());
-    /* En utilisant un Matcher
-     assertThat(agent.isFree(), equalTo(true));
-     assertThat(agent.getScore(), is(0));
-    */
   }
 }
 ```
@@ -134,29 +130,61 @@ public class AgentsTest {
   }
 }
 ```
+##### L'utisation des matchers
+
+La méthode assertThat() prend en paramètre un matcher qui est une addition externe pour JUnit et qui a été ajouter par le framework Hamcrest. L'utilité des Matchers c'est qu'on peut implémenter nos Matchers customisés. Par contre JUnit(Hamcrest) nous propose pas mal de Matchers qu'on peut utiliser. Par exemple:
+```
+@Test
+public void testGoldPicking() {
+  Agent agent = new Agent();
+  agent.pickGold();
+  assertThat(agent.isFree(), is(false));
+  assertThat(agent.getScore(), is(1));
+}
+```
+
+Vous pouvez voir la liste des Matchers et leurs utilisation sur le lien suivant: [ici](http://tutorials.jenkov.com/java-unit-testing/matchers.html)
+
+
+##### Tester les exceptions
+
+Pour tester une exception on doit déclarer que notre méthode va lever une exception. Par exemple:
+
+```
+@Test(expected = IllegalArgumentException.class)
+public void testForAgentException() {
+  Agent agent = new Agent();
+  agent.throwAnException();
+}
+```
+L'expression 'expected = IllegalArgumentException.class' signal que notre méthode va lever une exception de type IllegalArgumentException. Si ce n'est pas le cas, le test échoue.
+
+##### Lancer les tests
 
 <p align="justify">Bien que la création de nos tests consomme la majeure partie de l'effort, les tests sans mécanisme d'exécution ne servent à rien. En règle générale, il existe 2 façons courantes d'exécuter des tests JUnit: (1) sur la ligne de commande à l'aide de Maven/Gradle, (2) à l'aide de l'IDE.
 
-**Maven**
+*Maven*
 ```
 mvn test
 ```
 
-**Gradle**
+*Gradle*
 ```
 gradle test
 ```
 
-**IDE**
+*IDE*
 
 <p align="justify">Il suffit d'éxecuter la class de test sous IntelliJ IDEA, et sous Eclipse click droit sur la classe de test, puis **RUN AS**, et enfin **JUnit Test**.
 
 #### 6. Générer un rapport HTML
 
 <p align="justify">Nous pouvons utiliser le plugin maven-surefire-report-plugin pour générer des rapports HTML pour nos tests unitaires. Ce rapport peut être exporté et partagé avec l'équipe. Il de comprendre le déroulement des tests, et il est utile en cas d'utilisation d'un outil d'intégration continue (CI).
-    
-Pour ce faire, il suffit de tapper la commande: 
-> mvn surefire-report:report
+
+Pour ce faire, il suffit de tapper la commande:
+```
+mvn surefire-report:report
+```
 
 Un rapport HTML doit être généré dans ${basedir}/target/site/surefire-report.html.
 
@@ -195,6 +223,10 @@ public class Agent implements {
       score += 1;
     }
 
+    public void throwAnException() {
+      throw new IllegalArgumentException("Exception depuis la class Agent");
+    }
+
 ```
 
 ## Références
@@ -202,3 +234,4 @@ public class Agent implements {
 1. https://junit.org/junit4/
 1. https://www.javaguides.net/p/junit-4.html
 1. https://dev.to/chrisvasqm/introduction-to-unit-testing-with-java-2544
+1. http://tutorials.jenkov.com/java-unit-testing
