@@ -200,7 +200,7 @@ Un rapport HTML doit être généré dans ${basedir}/target/site/surefire-report
 1. La class Agent:
 
 ```
-public class Agent implements {
+public class Agent {
 
     private String id;
     private boolean free;
